@@ -47,12 +47,16 @@ The solution can be easily deployed by going to [https://github.com/Azure/azure-
 Once the solution is deployed, a web application is created in Azure. **Update** the Azure AD application registration. 
 
 1. On the **Overview** page for the Azure Web App that was deployed, copy the URL for the web site (for example, "https://sample.azurewebsites.net/".) 2. On the **Settings** page for the application registration in Azure AD, select **Reply URLS**.
-3. Add the URL for the Azure Web App and cliek **Save**. Ensure the trailing "/" is added to the URL.
+2. Add the URL for the Azure Web App and append "/signin-oidc". For example, https://demo.azurewebsites.net/signin-oidc. **Save** your changes.
 
 ## Running the solution locally
 
-If you want to run the solution locally, first deploy the solution as described above. Then open the Application Settings blade for each web application that was deployed and update the corresponding `appsettings.json` file locally.
+If you want to run the solution locally:
 
-The application uses Managed Service Identity to communicate with Azure Key Vault. To debug locally, open the solution in Visual Studio 2017 and go to the **Options / Azure Service Authentication / Account Selection** screen. The account that you run as must also have permission to Get secrets from the created Azure Key Vault.
+1. Deploy the solution as described above. 
+2. Open the Application Settings blade for each web application that was deployed to Azure. 
+3. Copy the application settings from the Azure Web App to the `appsettings.json` file locally.
+
+The application uses Managed Service Identity to communicate with Azure Key Vault. To debug locally, sign into the Azure CLI with the credentials of a user that has permission to get secrets from Azure Key Vault. If you are using Visual Studio 2017 or higher, you can explicitly set the user. Open the solution in Visual Studio 2017 and go to the **Options / Azure Service Authentication / Account Selection** screen. The account that you run as must also have permission to Get secrets from the created Azure Key Vault.
 
 ![Azure Service Authentication Account Selection screen in Visual Studio 2017](images/azure-service-authentication.png)
